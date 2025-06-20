@@ -28,7 +28,7 @@ A more complex tree is pictured below. Note that the child nodes in higher layer
 * Each leaf represents a single, focused observation.
 
 <p align="center">
-<img src="_blogs/_capsules_networks/complex_tree.png" alt="Tree with many parent and child nodes." width="500" >
+<img src="_blogs/_capsules_network/complex_tree.png" alt="Tree with many parent and child nodes." width="500" >
 </p>
 
 In the example below, you can see how the parts of a face (eyes, nose, mouth, etc.) might be recognized in leaf nodes and then combined to form a more complete face part in parent nodes.
@@ -86,7 +86,7 @@ Going back to the cat face detection example, say a capsule detects a cat's face
 If we then look at a different image of this cat's face, one in which the cat has flipped, the orientation of this capsule's output vector will change. The face part properties, position, orientation, and shape, have changed in this new image, and the orientation of the output vector changes with each of these property changes. These changes are changes in neural activities inside a capsule. The *magnitude* of the vector should remain very close to 0.9  since the capsule should still be confident that the face exists in the image!
 
 <p align="center">
-<img src="_blogs/_capsules_network/capsules/cat_face_2.png" alt="An upside-down cat's face, detected by a capsule with 90% confidence." width="600" >
+<img src="_blogs/_capsules_network/cat_face_2.png" alt="An upside-down cat's face, detected by a capsule with 90% confidence." width="600" >
 </p>
 
 
