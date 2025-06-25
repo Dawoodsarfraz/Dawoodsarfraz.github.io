@@ -5,7 +5,7 @@ title: Capsule Networks
 
 Capsule Networks provide a way to detect parts of objects in an image and represent spatial relationships between those parts. This means that capsule networks are able to recognize the same object in a variety of different poses even if they have not seen that pose in training data. So, what is a capsule and how do they work? 
 <p align="center">
-<img src="_blogs/_capsules_network/capsule_output.gif" alt="Capsule producing an output vector." width="500" >
+<img src="blogs/capsules_network/capsule_output.gif" alt="Capsule producing an output vector." width="500" >
 </p>
 
 <!--more-->
@@ -20,7 +20,7 @@ Capsule Networks are modeled after how humans tend to focus. Our visual system i
 For the purpose of capsule networks, we’re going to model this piece-by-piece focus as a tree. Trees are made of parent nodes and descendant, children nodes. They are called trees because they are modeled after the shape of tree branches.
 
 <p align="center">
-<img src="_blogs/_capsules_network/simple_tree.png" alt="A tree made of one parent node and two, descendant child nodes." width="200" >
+<img src="blogs/capsules_network/simple_tree.png" alt="A tree made of one parent node and two, descendant child nodes." width="200" >
 </p>
 
 A more complex tree is pictured below. Note that the child nodes in higher layers are *parents* of their own child nodes; these have been color-coded in the diagram so that if a node is a child and parent, its child node text color matches it's corresponding parent node's text color. For example, a node that has purple "parent" text will be attached to a corresponding child node with a purple "child" label. Parent nodes may have more than one child and child nodes can be attached to multiple parents. Also, a "leaf" is a kind of child node without any children. In the case of capsule networks:
