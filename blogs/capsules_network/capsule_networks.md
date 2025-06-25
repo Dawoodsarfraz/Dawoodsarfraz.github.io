@@ -28,19 +28,19 @@ A more complex tree is pictured below. Note that the child nodes in higher layer
 * Each leaf represents a single, focused observation.
 
 <p align="center">
-<img src="_blogs/_capsules_network/complex_tree.png" alt="Tree with many parent and child nodes." width="500" >
+<img src="blogs/capsules_network/complex_tree.png" alt="Tree with many parent and child nodes." width="500" >
 </p>
 
 In the example below, you can see how the parts of a face (eyes, nose, mouth, etc.) might be recognized in leaf nodes and then combined to form a more complete face part in parent nodes.
 
 <p align="center">
-<img src="_blogs/_capsules_network/face_parse_tree.png" alt="Tree child nodes that notice small facial parts (single eyes, nose, mouth, etc.) and parent nodes that put those observations together to form a whole face at the top of the tree." width="340" >
+<img src="blogs/capsules_network/face_parse_tree.png" alt="Tree child nodes that notice small facial parts (single eyes, nose, mouth, etc.) and parent nodes that put those observations together to form a whole face at the top of the tree." width="340" >
 </p>
 
 Parent nodes combine observations from child nodes to build up a more complex picture. In a neural network structure, you'll often see these trees rotated so that they are on their side. This may start to look like a familiar image of a neural network, with layers of nodes that process some input data, produce outputs, and pass those outputs to the next layer of nodes.
 
 <p align="center">
-<img src="_blogs/_capsules_network/sideways_tree.png" alt="Layers of child and parent nodes rotated so that they look like a typical neural network." width="400" >
+<img src="blogs/capsules_network/sideways_tree.png" alt="Layers of child and parent nodes rotated so that they look like a typical neural network." width="400" >
 </p>
 
 Recall that every node in this tree represents a capsule in a capsule network, and as we move forward through these layers, the capsules in each layer can build up a more complete representation of an object in an image piece-by-piece. Next, let's see how capsules represent image and object parts.
@@ -53,7 +53,7 @@ Recall that every node in this tree represents a capsule in a capsule network, a
 Capsules are a small group of neurons where each neuron in a capsule represents various properties of a particular image part. Some examples of part properties include: position and orientation in an image, width, and texture.
 
 <p align="center">
-<img src="_blogs/_capsules_network/capsule_ex.png" alt="A single capsule containing multiple neurons (part properties)." width="400" >
+<img src="blogs/capsules_network/capsule_ex.png" alt="A single capsule containing multiple neurons (part properties)." width="400" >
 </p>
 
 A special part property is its **existence** in an image. 
@@ -70,7 +70,7 @@ Every capsule outputs a vector, **u**, with a magnitude and orientation.
 * Orientation (theta) = the state of the part properties.
 
 <p align="center">
-<img src="_blogs/_capsules_network/output_vector.png" alt="A capsule's output vector with a magnitude and orientation." width="500" >
+<img src="blogs/capsules_network/output_vector.png" alt="A capsule's output vector with a magnitude and orientation." width="500" >
 </p>
 
 * The magnitude of the vector is a value between 0 and 1 that indicates the probability that a part exists and has been detected in an image. This is a normalized function of the weighted inputs to a particular a capsule; a nonlinear function called **squashing**.
@@ -80,13 +80,13 @@ Every capsule outputs a vector, **u**, with a magnitude and orientation.
 Going back to the cat face detection example, say a capsule detects a cat's face in an image, and it outputs a vector with a magnitude of 0.9. This means that it detects a face with 90% confidence.
 
 <p align="center">
-<img src="_blogs/_capsules_network/cat_face_1.png" alt="An upright cat's face, detected by a capsule with 90% confidence." width="600" >
+<img src="blogs/capsules_network/cat_face_1.png" alt="An upright cat's face, detected by a capsule with 90% confidence." width="600" >
 </p>
 
 If we then look at a different image of this cat's face, one in which the cat has flipped, the orientation of this capsule's output vector will change. The face part properties, position, orientation, and shape, have changed in this new image, and the orientation of the output vector changes with each of these property changes. These changes are changes in neural activities inside a capsule. The *magnitude* of the vector should remain very close to 0.9  since the capsule should still be confident that the face exists in the image!
 
 <p align="center">
-<img src="_blogs/_capsules_network/cat_face_2.png" alt="An upside-down cat's face, detected by a capsule with 90% confidence." width="600" >
+<img src="blogs/capsules_network/cat_face_2.png" alt="An upside-down cat's face, detected by a capsule with 90% confidence." width="600" >
 </p>
 
 
@@ -108,7 +108,7 @@ Dynamic routing is a process for finding the *best* connections between the outp
 You may have already seen an example of a simple routing process in a convolutional neural network. CNN's extract features from images via a convolutional layer that is made of a stack of filtered images. In a typical CNN architecture, this filtered information is then passed to a maxpooling layer. (If you'd like to review this architecture, it's covered in [a previous post](https://cezannec.github.io/Convolutional_Neural_Networks/).) The maxpooling layer creates a route that ignores all but the most "active" or high-valued features in a patch in the previous, convolutional layer. 
 
 <p align="center">
-<img src="_blogs/_cnn_intro/maxpool.png" alt="2x2 pixel patches." width="500" >
+<img src="blogs/cnn_intro/maxpool.png" alt="2x2 pixel patches." width="500" >
 </p>
 
 This routing process discards a lot of pixel information and it produces vastly different results for image of the same object in different orientations. So, how does dynamic routing work and how does it improve upon a simple routing process like maxpooling?
@@ -118,7 +118,7 @@ This routing process discards a lot of pixel information and it produces vastly 
 When a capsule network is initialized, child capsules are not sure where their outputs should go as they act as input to the next layer of parent capsules. In fact, each capsule starts out with a list of *possible* parents, which is all the parent capsules in the next layer. This possibility is represented by a value called the *coupling coefficient*, **c**, which is the probability that a certain capsule's output should go to a parent capsule in the next layer. Examples of coupling coefficients, written on the connecting lines between a child and its possible parent nodes, are pictured below. A child node with two possible parents will start out with equal coupling coefficients for both: 0.5.
 
 <p align="center">
-<img src="_blogs/_capsules_network/coupling_coeff.png" alt="Coupling coefficients between a child capsule and two possible parents." width="400" >
+<img src="blogs/capsules_network/coupling_coeff.png" alt="Coupling coefficients between a child capsule and two possible parents." width="400" >
 </p>
 
 The coupling coefficients across all possible parents can be pictured as a discrete probability distribution. Across all connections between *one* child capsule and all possible parent capsules, the coupling coefficients should sum to 1.
@@ -136,11 +136,11 @@ Dynamic routing is an iterative process that updates these coupling coefficients
 * This dot product between the parent output vector, **v**, and a prediction vector, **u_hat**, is known as a measure of capsule agreement, **a**.
 
 <p align="center">
-<img src="_blogs/_capsules_network/u_hat.png" alt="u_hat equals a weight matrix W times u, the capsule output vector." width="160" >
+<img src="blogs/capsules_network/u_hat.png" alt="u_hat equals a weight matrix W times u, the capsule output vector." width="160" >
 </p>
 
 <p align="center">
-<img src="_blogs/_capsules_network/agreement.png" alt="Agreement equals the parent capsule's output times the prediction vector." width="160" >
+<img src="blogs/capsules_network/agreement.png" alt="Agreement equals the parent capsule's output times the prediction vector." width="160" >
 </p>
 
 This is sometimes referred to as *top-down* feedback; feedback from a later layer of parent capsule outputs. 
@@ -148,7 +148,7 @@ This is sometimes referred to as *top-down* feedback; feedback from a later laye
 The dot product between two vectors is a single value that can be thought of as a measure of orientation similarity or alignment. Consider the two vectors, **a** and **b**, below. The dot product between **a** and **b** is calculated as their magnitudes times the cosine of the angle, alpha, between them: a\*b\*cos(alpha). Cosine is at a maximum value (1) if the two vectors have no angle difference between them, and is at a minimum (0) when the two vectors have a right-angle difference between them. In the example below, the dot product is calculated for two vectors with alpha equal to 35 degrees.
 
 <p align="center">
-<img src="_blogs/_capsules_network/dot_prod_ex.png" alt="Dot product between two vectors, a and b. 0.8*0.5*cos(35 degrees) = 0.328." width="400" >
+<img src="blogs/capsules_network/dot_prod_ex.png" alt="Dot product between two vectors, a and b. 0.8*0.5*cos(35 degrees) = 0.328." width="400" >
 </p>
 
 A high coupling coefficient, between a child and parent capsule, increases the contribution of the child to that parent, thus *further* aligning their two output vectors and making their agreement dot product even larger! 
@@ -156,13 +156,13 @@ A high coupling coefficient, between a child and parent capsule, increases the c
 This is called **routing by agreement**. If the orientation of the output vectors of capsules in successive layers are aligned, then they agree that they should be coupled, and the connections between them are strengthened. The coupling coefficients are calculated by a [softmax function](https://en.wikipedia.org/wiki/Softmax_function) that operates on the agreements, **a**, between capsules and turns them into probabilities such that the coefficients between one child, and its possible parents, sum to 1. 
 
 <p align="center">
-<img src="_blogs/_capsules_network/dynamic_routing.gif" alt="Dynamic routing." width="600" >
+<img src="blogs/capsules_network/dynamic_routing.gif" alt="Dynamic routing." width="600" >
 </p>
 
 A typical training process may include three such agreement iterations and final coupling coefficients may look like the following image, with some child capsules choosing one dominant parent and others contributing to both parents.
 
 <p align="center">
-<img src="_blogs/_capsules_network/complete_coeffs.png" alt="Coupling coefficients between three child capsules and two possible parents." width="400" >
+<img src="blogs/capsules_network/complete_coeffs.png" alt="Coupling coefficients between three child capsules and two possible parents." width="400" >
 </p>
 
 
@@ -182,7 +182,7 @@ For example, to recognize a face, a capsule network would need to know that a ty
 The spatial relationships between parts can be modeled by a series of matrix multiplications, between the output of child capsules and parents, that capture the pose (the position and orientation) of each part; then a capsule network essentially checks for **agreement** between these poses. Agreement is based on the vector orientations of child and parent capsules, and when compared to the scalar outputs of a typical convolutional layer, a capsule's vector output can provide more information.
 
 <p align="center">
-<img src="_blogs/_capsules_network/transformation.png" alt="Transformation matrices between a couple layers of a capsule network." width="500" >
+<img src="blogs/capsules_network/transformation.png" alt="Transformation matrices between a couple layers of a capsule network." width="500" >
 </p>
 
 For example, agreement can ensure that all the parts of a single face are facing in the same direction or that there are one or two eyes on a face and not three. This is in contrast to a typical CNN which only checks for the existence of different features, but not their relationship to one another. 
@@ -198,7 +198,7 @@ A Capsule Network can be broken down into two main parts:
 2. A fully-connected, linear decoder
 
 <p align="center" >
-<img src='_blogs/_capsules_network/complete_caps_net.png' width="600" />
+<img src='blogs/capsules_network/complete_caps_net.png' width="600" />
 </p>
 
 The above image was taken from the original [Capsule Network paper (Hinton et. al.)](https://arxiv.org/pdf/1710.09829.pdf).
@@ -210,7 +210,7 @@ I've implemented the capsule network in PyTorch code and you can find that reada
 The decoder sees as input the 16-dimensional vectors that are produced by the DigitCaps layer. There is one "correct" capsule output vector; this vector is the vector with the largest vector magnitude of all ten digit capsule outputs (recall that vector magnitude corresponds to a part's existence in an image). Then, the decoder upsamples that one vector, decoding it into a reconstructed image of a handwritten digit. So, the decoder is learning a mapping from a capsule output vector to a 784-dim vector that can be reshaped into a 28x28 reconstructed image. You can see some sample reconstructions, below. The original images are on the top row, and their reconstructions are in the row below; you can see that the reconstructions are blurrier but, generally, quite good.
 
 <p align="center" >
-<img src='_blogs/_capsules_network/reconstructions.png' width="500" />
+<img src='blogs/capsules_network/reconstructions.png' width="500" />
 </p>
 
 This will be a great visualization tool and this decoder acts as a regularization technique, forcing the 16-dimensional vectors to encode something about the content of an input image.
@@ -221,10 +221,10 @@ This will be a great visualization tool and this decoder acts as a regularizatio
 The final capsule layer, DigitCaps, outputs vectors of length 16. It turns out that some of these vector dimensions have learned to represent the features that makeup and distinguish each class of handwritten digit, 0-9. The features that distinguish different image classes are traits like image width, skew, line thickness, and so on. In my implementation, I tried to visualize what each vector dimension represents by slightly modifying the capsule output vectors and visualizing the reconstructed images. I've highlighted some of my results below.
 
 <p align="center" >
-<img src='_blogs/_capsules_network/perturbed_reconstructions.png' width="500" />
+<img src='blogs/capsules_network/perturbed_reconstructions.png' width="500" />
 </p>
 
-You can see all of these experiments and results in my [complete implementation](https://github.com/cezannec/capsule_net_pytorch).
+You can see all of these experiments and results in my [complete implementation](https://github.com/Dawoodsarfraz/capsule_net_pytorch).
 
 
 ---
