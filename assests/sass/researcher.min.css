@@ -263,9 +263,12 @@ body>div.mt-5 {
 .btn-outline-brand {
     color: #000ebb;
     border: 1px solid #000ebb;
+    box-shadow: none;
 }
 
 .btn-outline-brand:hover {
     background: #000ebb;
     color: white;
+    box-shadow: none;
+    outline: none;
 }
