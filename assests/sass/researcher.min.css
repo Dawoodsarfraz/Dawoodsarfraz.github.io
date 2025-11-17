@@ -259,3 +259,13 @@ body>div.mt-5 {
     max-width: 280px;
     margin: 5px 0
 }
+
+.btn-outline-brand {
+    color: #000ebb;
+    border: 1px solid #000ebb;
+}
+
+.btn-outline-brand:hover {
+    background: #000ebb;
+    color: white;
+}
